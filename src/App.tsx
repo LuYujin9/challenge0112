@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import "./App.css";
 import { Country } from "./date.type";
 import CountrySelector from "./components/CountrySelector";
@@ -7,7 +7,7 @@ const initialCountries: Country[] = [
   {
     id: "0",
     name: "Germany",
-    isSelected: true,
+    isSelected: false,
   },
   {
     id: "1",
@@ -24,6 +24,7 @@ const initialCountries: Country[] = [
 function App() {
   const [isAllSelected, setIsAllSelected] = useState(false);
   const [countries, setCountries] = useState(initialCountries);
+  const [newCountry, setNewCountry] = useState("");
 
   /* <-- another solution of changing the situation of all Countries checkbox -->*/
   /*   useEffect(() => {
@@ -69,6 +70,22 @@ function App() {
     setCountries(updatedCountries);
   }
 
+  function addNewCountry(event: FormEvent<HTMLFormElement>) {
+    event?.preventDefault();
+    const newCountryName = newCountry;
+    if (newCountryName) {
+      const id = countries.length.toString();
+      const isSelected = isAllSelected ? true : false;
+      const newCountry = {
+        id: id,
+        name: newCountryName,
+        isSelected: isSelected,
+      };
+      setCountries([...countries, newCountry]);
+      setNewCountry("");
+    }
+  }
+
   return (
     <>
       <form className="select-countries-form">
@@ -94,10 +111,21 @@ function App() {
           })}
         </div>
       </form>
-      <form className="add-country-form">
+      <form
+        className="add-country-form"
+        onSubmit={(event) => addNewCountry(event)}
+      >
         <label htmlFor="all">
           New country
-          <input type="text" id="newCountry" name="newCountry" />
+          <input
+            type="text"
+            id="newCountry"
+            name="newCountry"
+            value={newCountry}
+            onChange={(event) => {
+              setNewCountry(event.target.value);
+            }}
+          />
         </label>
         <button type="submit">Add</button>
       </form>
