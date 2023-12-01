@@ -48,6 +48,7 @@ button {
   background-color: gray;
   border: 1px solid #213547;
   border-radius: 10px;
+  color: black;
 }
 button:hover {
   border-color: #646cff;
