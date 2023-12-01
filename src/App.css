@@ -1,0 +1,23 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.select-countries-form {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.add-country-form {
+  display: flex;
+}
+
+.container {
+  width: 500px;
+  border-top: 2px solid gray;
+  display: flex;
+  flex-direction: column;
+}
