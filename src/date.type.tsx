@@ -7,5 +7,7 @@ export type Country = {
    * and thus keeping this state outside of the data objects makes it a lot easier
    * to deal with updates, refetches, etc.
    */
-  isSelected: boolean;
+  /**
+   * UPDATE: deleted the 'isSelected'
+   */
 };
